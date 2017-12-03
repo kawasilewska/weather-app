@@ -1,0 +1,30 @@
+@mixin background {
+    background-image: url("../images/blue-endless-ocean-in-fog-picjumbo-com.jpg");
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    @include background;
+
+    #gdansk, .search{
+        margin-left: 1em;
+    }
+
+    .card {
+        margin-top: 2em;
+        padding-top: 1em;
+        background-color: rgba(255, 255, 255, 0.5);
+
+        .center {
+            text-align: center;
+        }
+    }
+}
