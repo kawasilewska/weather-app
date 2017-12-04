@@ -15,7 +15,7 @@ body {
     @include background;
 
     #gdansk, .search{
-        margin-left: 1em;
+        margin-left: .5em;
     }
 
     .card {
@@ -25,6 +25,11 @@ body {
 
         .center {
             text-align: center;
+        }
+
+        .day {
+            font-weight: bold;
+            font-size: 1.2em;
         }
     }
 }

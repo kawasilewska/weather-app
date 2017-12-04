@@ -8,12 +8,15 @@ body {
   background-repeat: no-repeat;
   background-size: cover; }
   body #gdansk, body .search {
-    margin-left: 1em; }
+    margin-left: .5em; }
   body .card {
     margin-top: 2em;
     padding-top: 1em;
     background-color: rgba(255, 255, 255, 0.5); }
     body .card .center {
       text-align: center; }
+    body .card .day {
+      font-weight: bold;
+      font-size: 1.2em; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $('#checkGeo').on('click', function() {
+
+    $('.checkByGeo').on('click', function() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var longitude = position.coords.longitude;
@@ -8,33 +9,38 @@ $(document).ready(function() {
                 var apiUrl = 'http://api.openweathermap.org/data/2.5/weather?lon=' + longitude + '&lat=' + latitude + '&units=metric&lang=pl&appid=1caabd42d7e148e50786965db859995f';
                 console.log(apiUrl);
 
-                getWeather(apiUrl);
+                searchText = 'select * from weather.forecast where woeid in (select woeid from geo.places where text="(' + latitude + ',' + longitude + ')") and u="c"';
+                var apiUrl2 = 'https://query.yahooapis.com/v1/public/yql?q=' + searchText + '&format=json';
+                console.log(apiUrl2);
+
+                getWeather('openweathermap', apiUrl);
+                getWeather('yahoo', apiUrl2);
             });
         }
     });
 
     $('.checkTemp').on('click', function() {
-        var city = document.getElementById("city").value;
+       var city = document.getElementById("city").value;
 
-        getWeather('openweathermap', getApiUrl('openweathermap', city));
-        getWeather('yahoo', getApiUrl('yahoo', city));
-    });
+       getWeather('openweathermap', getApiUrl('openweathermap', city));
+       getWeather('yahoo', getApiUrl('yahoo', city));
+   });
 
-    $('.cityName').on('click', function(event) {
-        var city = event.target.id;
+   $('.cityName').on('click', function(event) {
+       var city = event.target.id;
 
-        getWeather('openweathermap', getApiUrl('openweathermap', city));
-        getWeather('yahoo', getApiUrl('yahoo', city));
-    });
+       getWeather('openweathermap', getApiUrl('openweathermap', city));
+       getWeather('yahoo', getApiUrl('yahoo', city));
+   });
 });
 
 function getApiUrl(provider, city) {
+    var searchText;
     switch (provider) {
         case 'openweathermap':
             return 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=pl&appid=1caabd42d7e148e50786965db859995f';
         case 'yahoo':
-            var searchText = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + city + '") and u="c"';
-
+            searchText = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + city + '") and u="c"';
             return 'https://query.yahooapis.com/v1/public/yql?q=' + searchText + '&format=json';
     }
 }
@@ -61,30 +67,36 @@ function getWeather(provider, apiUrl) {
                 }
 
                 $("#iconCode").html("<img src='http://openweathermap.org/img/w/" + iconCode + ".png' alt='Weather icon'>" + " <br />" + description);
-                $("#cityGeo").html(city + ", " + country);
-                $("#temperatureGeo").html(tempC + "°C");
-                $("#detailsGeo").html("Ciśnienie: " + pressure + " hPa<br /> Wilgotność: " + humidity + " %<br />Min temperatura: " + tempMinC + " &#8451;<br />Max temperatura: " + tempMaxC + " &#8451; <br />Wiatr: " + convertedWind + " km/h");
+                $("#cityName").html(city + ", " + country);
+                $("#temperature").html(tempC + "°C");
+                $("#details").html("Ciśnienie: " + pressure + " hPa<br /> Wilgotność: " + humidity + " %<br />Min temperatura: " + tempMinC + " &#8451;<br />Max temperatura: " + tempMaxC + " &#8451; <br />Wiatr: " + convertedWind + " km/h");
             });
             break;
         case 'yahoo':
             $.getJSON(apiUrl, function(data) {
-                var date = data.query.results.channel.item.forecast[1].date;
-                var day = data.query.results.channel.item.forecast[1].day;
-                var tempMinC = data.query.results.channel.item.forecast[1].low;
-                var tempMaxC = data.query.results.channel.item.forecast[1].high;
-                $('.tomorrow').html(day + ", " + date + "<br />" + tempMinC + "°C " + tempMaxC + "°C");
+                for (var i = 1; i <= 3; i++) {
+                    var date = data.query.results.channel.item.forecast[i].date;
+                    var day = data.query.results.channel.item.forecast[i].day;
+                    var code = data.query.results.channel.item.forecast[i].code;
+                    var text = data.query.results.channel.item.forecast[i].text;
+                    var tempMinC = data.query.results.channel.item.forecast[i].low;
+                    var tempMaxC = data.query.results.channel.item.forecast[i].high;
 
-                var date = data.query.results.channel.item.forecast[2].date;
-                var day = data.query.results.channel.item.forecast[2].day;
-                var tempMinC = data.query.results.channel.item.forecast[2].low;
-                var tempMaxC = data.query.results.channel.item.forecast[2].high;
-                $('.overmorrow').html(day + ", " + date + "<br />" + tempMinC + "°C " + tempMaxC + "°C");
-
-                var date = data.query.results.channel.item.forecast[3].date;
-                var day = data.query.results.channel.item.forecast[3].day;
-                var tempMinC = data.query.results.channel.item.forecast[3].low;
-                var tempMaxC = data.query.results.channel.item.forecast[3].high;
-                $('.dayAfterOvermorrow').html(day + ", " + date + "<br />" + tempMinC + "°C " + tempMaxC + "°C");
+                    switch (i) {
+                        case 1:
+                            $('#day1').html(day + ", " + date);
+                            $('.tomorrow').html("<img src='http://l.yimg.com/a/i/us/we/52/" + code + ".gif' alt='Weather icon'>" + " <br />" + text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
+                            break;
+                        case 2:
+                            $('#day2').html(day + ", " + date);
+                            $('.overmorrow').html("<img src='http://l.yimg.com/a/i/us/we/52/" + code + ".gif' alt='Weather icon'>" + " <br />" + text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
+                            break;
+                        case 3:
+                            $('#day3').html(day + ", " + date);
+                            $('.dayAfterOvermorrow').html("<img src='http://l.yimg.com/a/i/us/we/52/" + code + ".gif' alt='Weather icon'>" + " <br />" + text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
+                            break;
+                    }
+                }
             });
             break;
     }

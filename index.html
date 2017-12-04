@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="libs/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -45,8 +46,8 @@
 
                 <form class="form-inline my-2 my-lg-0">
                   <input class="form-control mr-sm-2" type="search" placeholder="Podaj miasto" aria-label="Search" id="city">
-                  <button class="btn btn-outline-info my-2 my-sm-0 checkTemp" type="submit">Szukaj</button>
-                  <button class="btn btn-outline-info my-2 my-sm-0 search" type="submit" id="checkGeo">Moja lokalizacja</button>
+                  <button class="btn btn-outline-info my-2 my-sm-0 checkTemp" type="submit" id="checkTemp">Szukaj</button>
+                  <button class="btn btn-outline-info my-2 my-sm-0 search checkByGeo" type="submit"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
                 </form>
             </div>
         </nav>
@@ -61,20 +62,18 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-10">
-                                    <h4 id="cityGeo"></h4>
+                                    <h4 id="cityName"></h4>
                                 </div>
                             </div>
                             <div class="row align-items-center">
-                                <div class="col-3 center" id="iconCode">
-                                    <!-- icon -->
-                                </div>
+                                <div class="col-3 center" id="iconCode"></div>
                                 <div class="col-6 justify-content-center center">
                                     <h1 class="display-3">
-                                        <span id="temperatureGeo"></span>
+                                        <span id="temperature"></span>
                                     </h1>
                                 </div>
                                 <div class="col-3">
-                                    <p id="detailsGeo"></p>
+                                    <p id="details"></p>
                                 </div>
                             </div>
                         </div>
@@ -84,45 +83,32 @@
         </div>
         <div class="forecast">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        <p class="tomorrow"></p>
+                <div class="card">
+                    <div class="row justify-content-center center">
+                        <div class="col-10">
+                            <h1 class="card-title">Kolejne dni</h1>
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <p class="overmorrow"></p>
-                    </div>
-                    <div class="col-sm">
-                        <p class="dayAfterOvermorrow"></p>
+                    <div class="card-body">
+                        <div class="row center">
+                            <div class="col-4">
+                                <p class="day" id="day1"></p>
+                                <p class="tomorrow"></p>
+                            </div>
+                            <div class="col-4">
+                                <p class="day" id="day2"></p>
+                                <p class="overmorrow"></p>
+                            </div>
+                            <div class="col-4">
+                                <p class="day" id="day3"></p>
+                                <p class="dayAfterOvermorrow"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                    <div class="col-sm">
-                        One of three columns
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
-
-
-    <!-- <p id="city"></p> -->
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
