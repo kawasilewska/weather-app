@@ -19,6 +19,7 @@ body {
     }
 
     .card {
+        visibility:hidden;
         margin-top: 2em;
         padding-top: 1em;
         background-color: rgba(255, 255, 255, 0.5);
@@ -30,6 +31,25 @@ body {
         .day {
             font-weight: bold;
             font-size: 1.2em;
+        }
+
+        .weatherIcon {
+            font-size: 3em;
+            color: rgb(0, 134, 191);
+        }
+
+        .temperatureDetail {
+            padding-top: .75em;
+        }
+
+        .detail {
+            padding-top: 3em;
+            // font-size: 1.2em;
+
+            .detailsIcon {
+                // height: 2.25vw;
+                // width: 2.25vw;
+            }
         }
     }
 }

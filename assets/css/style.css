@@ -10,6 +10,7 @@ body {
   body #gdansk, body .search {
     margin-left: .5em; }
   body .card {
+    visibility: hidden;
     margin-top: 2em;
     padding-top: 1em;
     background-color: rgba(255, 255, 255, 0.5); }
@@ -18,5 +19,12 @@ body {
     body .card .day {
       font-weight: bold;
       font-size: 1.2em; }
+    body .card .weatherIcon {
+      font-size: 3em;
+      color: #0086bf; }
+    body .card .temperatureDetail {
+      padding-top: .75em; }
+    body .card .detail {
+      padding-top: 3em; }
 
 /*# sourceMappingURL=style.css.map */
