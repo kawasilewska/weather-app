@@ -6,6 +6,8 @@
     background-size: cover;
 }
 
+$maincolor: rgb(0, 134, 191);
+
 body, html {
     height: 100%;
     margin: 0;
@@ -14,18 +16,22 @@ body, html {
 body {
     @include background;
 
+    .cityName:hover {
+        background-color: $maincolor;
+    }
+
     #gdansk, .search{
         margin-left: .5em;
     }
 
     .card {
-        visibility:hidden;
+        visibility: hidden;
         margin-top: 2em;
         padding-top: 1em;
         background-color: rgba(255, 255, 255, 0.5);
 
         .card-title {
-            font-size: 2em;
+            font-size: 2.5em;
         }
 
         .center {
@@ -39,7 +45,7 @@ body {
 
         .weatherIcon {
             font-size: 3em;
-            color: rgb(0, 134, 191);
+            color: $maincolor;
         }
 
         .temperatureDetail {

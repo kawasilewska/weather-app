@@ -65,6 +65,7 @@ function getWeather(provider, apiUrl) {
 
                 document.getElementById('currentWeatherCard').style.visibility = 'visible';
                 document.getElementById('forecastCard').style.visibility = 'visible';
+                document.getElementById('forecastCard2').style.visibility = 'visible';
 
                 $(".card-title").html("Dzisiaj, " + moment().locale('pl').format('LL'));
 
@@ -85,7 +86,7 @@ function getWeather(provider, apiUrl) {
                 $("#tempMinC").html(tempMinCurrentC + " &#8451;");
                 $("#tempMaxC").html(tempMaxCurrentC + " &#8451;");
 
-                for (var i = 1; i <= 3; i++) {
+                for (var i = 1; i <= 6; i++) {
                     var date = data.query.results.channel.item.forecast[i].date;
                     var day = data.query.results.channel.item.forecast[i].day;
                     var code = data.query.results.channel.item.forecast[i].code;
@@ -107,6 +108,21 @@ function getWeather(provider, apiUrl) {
                         case 3:
                             $('#day3').html(moment().locale('pl').add(3, 'days').format('ddd') + ', ' + moment().locale('pl').add(3, 'days').format('ll'));
                             $('#weatherIcon3').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
+                            $('.dayAfterOvermorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
+                            break;
+                        case 4:
+                            $('#day4').html(moment().locale('pl').add(4, 'days').format('ddd') + ', ' + moment().locale('pl').add(4, 'days').format('ll'));
+                            $('#weatherIcon4').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
+                            $('.tomorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
+                            break;
+                        case 5:
+                            $('#day5').html(moment().locale('pl').add(5, 'days').format('ddd') + ', ' + moment().locale('pl').add(5, 'days').format('ll'));
+                            $('#weatherIcon5').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
+                            $('.overmorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
+                            break;
+                        case 6:
+                            $('#day6').html(moment().locale('pl').add(6, 'days').format('ddd') + ', ' + moment().locale('pl').add(6, 'days').format('ll'));
+                            $('#weatherIcon6').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
                             $('.dayAfterOvermorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
                             break;
                     }

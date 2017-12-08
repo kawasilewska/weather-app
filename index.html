@@ -23,7 +23,10 @@
 
         <div class="content">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#"><i class="wi wi-day-sunny"></i> Weather App</a>
+                <a class="navbar-brand" href="#">
+                    <i class="wi wi-day-sunny"></i> 
+                    Weather App
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -48,94 +51,132 @@
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Podaj miasto" aria-label="Search" id="city">
-                      <button class="btn btn-outline-info my-2 my-sm-0 checkTemp" type="submit" id="checkTemp">Szukaj</button>
-                      <button class="btn btn-outline-info my-2 my-sm-0 search checkByGeo" type="submit"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Podaj miasto" aria-label="Search" id="city">
+                        <button class="btn btn-outline-info my-2 my-sm-0 checkTemp" type="submit" id="checkTemp">Szukaj</button>
+                        <button class="btn btn-outline-info my-2 my-sm-0 search checkByGeo" type="submit"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
                     </form>
                 </div>
             </nav>
             <div class="currentWeather">
                 <div class="container">
                     <div class="card" id="currentWeatherCard">
-                            <div class="row justify-content-center center">
+                        <div class="row justify-content-center center">
+                            <div class="col-10">
+                                <p class="card-title"></p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
                                 <div class="col-10">
-                                    <p class="card-title"></p>
+                                    <h4 id="cityName"></h4>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-10">
-                                        <h4 id="cityName"></h4>
+                            <div class="row align-items-center">
+                                <div class="col-4 center">
+                                    <p class="weatherIcon" id=iconCode></p>
+                                    <p id="description"></p>
+                                </div>
+                                <div class="col-4 center">
+                                    <h1 class="display-3">
+                                        <p id="temperature"></p>
+                                    </h1>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-6 text-right">
+                                            <img src='assets/images/icons8-thermometer-min-50.png' class="detailsIcon">
+                                        </div>
+                                        <div class="col-6" id="tempMinC"></div>
+                                    </div>
+                                    <div class="row align-items-center temperatureDetail">
+                                        <div class="col-6 text-right">
+                                            <img src='assets/images/icons8-thermometer-max-50.png' class="detailsIcon">
+                                        </div>
+                                        <div class="col-6" id="tempMaxC"></div>
                                     </div>
                                 </div>
-                                <div class="row align-items-center">
-                                    <div class="col-4 center">
-                                        <p class="weatherIcon" id=iconCode></p>
-                                        <p id="description"></p>
-                                    </div>
-                                    <div class="col-4 center">
-                                        <h1 class="display-3">
-                                            <p id="temperature"></p>
-                                        </h1>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row align-items-center">
-                                            <div class="col-6 text-right">
-                                                <img src='assets/images/icons8-thermometer-min-50.png' class="detailsIcon">
-                                            </div>
-                                            <div class="col-6" id="tempMinC"></div>
-                                        </div>
-                                        <div class="row align-items-center temperatureDetail">
-                                            <div class="col-6 text-right">
-                                                <img src='assets/images/icons8-thermometer-max-50.png' class="detailsIcon">
-                                            </div>
-                                            <div class="col-6" id="tempMaxC"></div>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="row detail">
+                                <div class="col-4 justify-content-center center">
+                                    <img src='assets/images/icons8-pressure-gauge-50.png' class="detailsIcon">
+                                    <p id="pressure"></p>
                                 </div>
-                                <div class="row detail">
-                                    <div class="col-4 justify-content-center center">
-                                        <img src='assets/images/icons8-pressure-gauge-50.png' class="detailsIcon">
-                                        <p id="pressure"></p>
-                                    </div>
-                                    <div class="col-4 justify-content-center center">
-                                        <img src='assets/images/icons8-hygrometer-50.png' class="detailsIcon">
-                                        <p id="humidity"></p>
-                                    </div>
-                                    <div class="col-4 justify-content-center center">
-                                        <img src='assets/images/icons8-windsock-50.png' class="detailsIcon">
-                                        <p id="wind"></p>
-                                    </div>
+                                <div class="col-4 justify-content-center center">
+                                    <img src='assets/images/icons8-hygrometer-50.png' class="detailsIcon">
+                                    <p id="humidity"></p>
+                                </div>
+                                <div class="col-4 justify-content-center center">
+                                    <img src='assets/images/icons8-windsock-50.png' class="detailsIcon">
+                                    <p id="wind"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="forecast">
-                <div class="container">
-                    <div class="card" id="forecastCard">
-                        <div class="card-body">
-                            <div class="row center">
-                                <div class="col-4">
-                                    <p class="day" id="day1"></p>
-                                    <p class="weatherIcon" id="weatherIcon1"></p>
-                                    <p class="tomorrow"></p>
+        </div>
+        <div class="forecast">
+            <div id="carouselControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="card" id="forecastCard">
+                                <div class="card-body">
+                                    <div class="row center">
+                                        <div class="col-4">
+                                            <p class="day" id="day1"></p>
+                                            <p class="weatherIcon" id="weatherIcon1"></p>
+                                            <p class="tomorrow"></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="day" id="day2"></p>
+                                            <p class="weatherIcon" id="weatherIcon2"></p>
+                                            <p class="overmorrow"></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="day" id="day3"></p>
+                                            <p class="weatherIcon" id="weatherIcon3"></p>
+                                            <p class="dayAfterOvermorrow"></p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-4">
-                                    <p class="day" id="day2"></p>
-                                    <p class="weatherIcon" id="weatherIcon2"></p>
-                                    <p class="overmorrow"></p>
-                                </div>
-                                <div class="col-4">
-                                    <p class="day" id="day3"></p>
-                                    <p class="weatherIcon" id="weatherIcon3"></p>
-                                    <p class="dayAfterOvermorrow"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="card" id="forecastCard2">
+                                <div class="card-body">
+                                    <div class="row center">
+                                        <div class="col-4">
+                                            <p class="day" id="day4"></p>
+                                            <p class="weatherIcon" id="weatherIcon4"></p>
+                                            <p class="tomorrow"></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="day" id="day5"></p>
+                                            <p class="weatherIcon" id="weatherIcon5"></p>
+                                            <p class="overmorrow"></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="day" id="day6"></p>
+                                            <p class="weatherIcon" id="weatherIcon6"></p>
+                                            <p class="dayAfterOvermorrow"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Poprzednie dni</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Kolejne dni</span>
+                </a>
             </div>
         </div>
 
