@@ -24,6 +24,10 @@ body {
         padding-top: 1em;
         background-color: rgba(255, 255, 255, 0.5);
 
+        .card-title {
+            font-size: 2em;
+        }
+
         .center {
             text-align: center;
         }
@@ -44,12 +48,6 @@ body {
 
         .detail {
             padding-top: 3em;
-            // font-size: 1.2em;
-
-            .detailsIcon {
-                // height: 2.25vw;
-                // width: 2.25vw;
-            }
         }
     }
 }

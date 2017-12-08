@@ -8,7 +8,7 @@
 
         <title>Weather App</title>
 
-        <link rel="icon" href="assets/images/favicon.png">
+        <link rel="icon" href="assets/images/favicon.ico">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
@@ -59,7 +59,7 @@
                     <div class="card" id="currentWeatherCard">
                             <div class="row justify-content-center center">
                                 <div class="col-10">
-                                    <h1 class="card-title">Dzisiaj</h1>
+                                    <p class="card-title"></p>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="col-4 center">
                                         <h1 class="display-3">
-                                            <span id="temperature"></span>
+                                            <p id="temperature"></p>
                                         </h1>
                                     </div>
                                     <div class="col-4">
@@ -115,11 +115,6 @@
             <div class="forecast">
                 <div class="container">
                     <div class="card" id="forecastCard">
-                        <!-- <div class="row justify-content-center center">
-                            <div class="col-10">
-                                <h1 class="card-title">Kolejne dni</h1>
-                            </div>
-                        </div> -->
                         <div class="card-body">
                             <div class="row center">
                                 <div class="col-4">
@@ -147,7 +142,8 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-        <script src="assets/js/script.js"></script>
+        <script src="assets/js/script.js" type="text/javascript"></script>
+        <script src="libs/moment.js/moment-with-locales.min.js" type="text/javascript"></script>
     </body>
 
 </html>

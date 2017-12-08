@@ -66,6 +66,8 @@ function getWeather(provider, apiUrl) {
                 document.getElementById('currentWeatherCard').style.visibility = 'visible';
                 document.getElementById('forecastCard').style.visibility = 'visible';
 
+                $(".card-title").html("Dzisiaj, " + moment().locale('pl').format('LL'));
+
                 $("#iconCode").html("<img class='wi wi-owm-" + iconCode + "' alt=' '>");
                 $("#description").html(description);
                 $("#cityName").html(city + ", " + country);
@@ -93,17 +95,17 @@ function getWeather(provider, apiUrl) {
 
                     switch (i) {
                         case 1:
-                            $('#day1').html(day + ", " + date);
+                            $('#day1').html(moment().locale('pl').add(1, 'days').format('ddd') + ', ' + moment().locale('pl').add(1, 'days').format('ll'));
                             $('#weatherIcon1').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
                             $('.tomorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
                             break;
                         case 2:
-                            $('#day2').html(day + ", " + date);
+                            $('#day2').html(moment().locale('pl').add(2, 'days').format('ddd') + ', ' + moment().locale('pl').add(2, 'days').format('ll'));
                             $('#weatherIcon2').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
                             $('.overmorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
                             break;
                         case 3:
-                            $('#day3').html(day + ", " + date);
+                            $('#day3').html(moment().locale('pl').add(3, 'days').format('ddd') + ', ' + moment().locale('pl').add(3, 'days').format('ll'));
                             $('#weatherIcon3').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
                             $('.dayAfterOvermorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
                             break;
