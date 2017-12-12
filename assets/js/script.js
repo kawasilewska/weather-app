@@ -69,7 +69,7 @@ function getWeather(provider, apiUrl) {
 
                 $(".card-title").html("Dzisiaj, " + moment().locale('pl').format('LL'));
 
-                $("#iconCode").html("<img class='wi wi-owm-" + iconCode + "' alt=' '>");
+                $("#iconCode").html("<i class='wi wi-owm-" + iconCode + "'></i>");
                 $("#description").html(description);
                 $("#cityName").html(city + ", " + country);
                 $("#temperature").html(tempC + "°C");
@@ -80,53 +80,30 @@ function getWeather(provider, apiUrl) {
             break;
         case 'yahoo':
             $.getJSON(apiUrl, function(data) {
-                var tempMinCurrentC = data.query.results.channel.item.forecast[0].low;
-                var tempMaxCurrentC = data.query.results.channel.item.forecast[0].high;
+                var forecast = data.query.results.channel.item.forecast;
 
-                $("#tempMinC").html(tempMinCurrentC + " &#8451;");
-                $("#tempMaxC").html(tempMaxCurrentC + " &#8451;");
+                forecast.forEach(function(forecastDay, index) {
+                    if (index === 0) {
+                        var tempMinCurrentC = forecast[0].low;
+                        var tempMaxCurrentC = forecast[0].high;
 
-                for (var i = 1; i <= 6; i++) {
-                    var date = data.query.results.channel.item.forecast[i].date;
-                    var day = data.query.results.channel.item.forecast[i].day;
-                    var code = data.query.results.channel.item.forecast[i].code;
-                    var text = data.query.results.channel.item.forecast[i].text;
-                    var tempMinC = data.query.results.channel.item.forecast[i].low;
-                    var tempMaxC = data.query.results.channel.item.forecast[i].high;
+                        $("#tempMinC").html(tempMinCurrentC + " &#8451;");
+                        $("#tempMaxC").html(tempMaxCurrentC + " &#8451;");
+                    } else {
+                        var day = index;
+                        var date = forecastDay.date;
+                        var imageCode = forecastDay.code;
+                        var text = forecastDay.text;
+                        var tempMinC = forecastDay.low;
+                        var tempMaxC = forecastDay.high;
 
-                    switch (i) {
-                        case 1:
-                            $('#day1').html(moment().locale('pl').add(1, 'days').format('ddd') + ', ' + moment().locale('pl').add(1, 'days').format('ll'));
-                            $('#weatherIcon1').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
-                            $('.tomorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
-                            break;
-                        case 2:
-                            $('#day2').html(moment().locale('pl').add(2, 'days').format('ddd') + ', ' + moment().locale('pl').add(2, 'days').format('ll'));
-                            $('#weatherIcon2').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
-                            $('.overmorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
-                            break;
-                        case 3:
-                            $('#day3').html(moment().locale('pl').add(3, 'days').format('ddd') + ', ' + moment().locale('pl').add(3, 'days').format('ll'));
-                            $('#weatherIcon3').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
-                            $('.dayAfterOvermorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
-                            break;
-                        case 4:
-                            $('#day4').html(moment().locale('pl').add(4, 'days').format('ddd') + ', ' + moment().locale('pl').add(4, 'days').format('ll'));
-                            $('#weatherIcon4').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
-                            $('.tomorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
-                            break;
-                        case 5:
-                            $('#day5').html(moment().locale('pl').add(5, 'days').format('ddd') + ', ' + moment().locale('pl').add(5, 'days').format('ll'));
-                            $('#weatherIcon5').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
-                            $('.overmorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
-                            break;
-                        case 6:
-                            $('#day6').html(moment().locale('pl').add(6, 'days').format('ddd') + ', ' + moment().locale('pl').add(6, 'days').format('ll'));
-                            $('#weatherIcon6').html("<img class='wi wi-yahoo-" + code + "' alt=' '>");
-                            $('.dayAfterOvermorrow').html(text + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
-                            break;
+                        var convertedText = translate(text);
+
+                        $('#day' + day).html(moment().locale('pl').add(day, 'days').format('ddd') + ', ' + moment().locale('pl').add(day, 'days').format('ll'));
+                        $('#weatherIcon' + day).html('<i class="wi wi-yahoo-' + imageCode + '"></i>');
+                        $('.forecastDay' + day).html(convertedText + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
                     }
-                }
+                });
             });
             break;
     }
@@ -134,4 +111,129 @@ function getWeather(provider, apiUrl) {
 
 function convertVelocity(wind) {
     return wind * 3600 / 1000;
+}
+
+var weatherStatusesEN = [
+    "Tornado",
+    "Tropical Storm",
+    "Hurricane",
+    "Severe Thunderstorms",
+    "Thunderstorms",
+    "Mixed Rain And Snow",
+    "Mixed Rain And Sleet",
+    "Mixed Snow And Sleet",
+    "Freezing Drizzle",
+    "Drizzle",
+    "Freezing Rain",
+    "Showers",
+    "Snow Flurries",
+    "Light Cnow Showers",
+    "Blowing Cnow",
+    "Snow",
+    "Hail",
+    "Sleet",
+    "Dust",
+    "Foggy",
+    "Haze",
+    "Smoky",
+    "Blustery",
+    "Windy",
+    "Cold",
+    "Cloudy",
+    "Mostly Cloudy",
+    "Partly Cloudy",
+    "Clear",
+    "Sunny",
+    "Fair",
+    "Mixed Rain And Hail",
+    "Hot",
+    "Isolated Thunderstorms",
+    "Scattered Thunderstorms",
+    "Scattered Showers",
+    "Heavy Snow",
+    "Scattered Snow Showers",
+    "Partly Cloudy",
+    "Thundershowers",
+    "Snow Showers",
+    "Isolated Thundershowers",
+    "Rain And Snow",
+    "Partialy Cloud",
+    "AM Showers",
+    "PM Showers",
+    "PM Thunderstorms",
+    "Light Rain with Thunder",
+    "Heavy Rain",
+    "Mostly Sunny",
+    "Light Rain",
+    "AM Rain",
+    "PM Rain",
+    "Heavy Thunderstorms",
+    "Rain",
+    "Breezy"
+];
+var weatherStatusesPL = [
+    "tornado",
+    "burza tropikalna",
+    "huragan",
+    "ostre burze z piorunami",
+    "burze z piorunami",
+    "deszcz ze śniegiem",
+    "deszcz i deszcz ze śniegiem",
+    "śnieg i deszcz ze śniegiem",
+    "marznąca mżawka",
+    "mżawka",
+    "marznący deszcz",
+    "ulewa",
+    "zawieja śnieżna",
+    "lekkie opady śniegu",
+    "podmuchy śniegu",
+    "śnieg",
+    "grad",
+    "śnieg z deszczem",
+    "kurz",
+    "mgliście",
+    "mgła",
+    "smog",
+    "przenikliwie zimno?",
+    "wietrznie",
+    "zimno",
+    "całkowite zachmurzenie",
+    "przeważnie pochmurno",
+    "częściowe zachmurzenie",
+    "bezchmurnie",
+    "słonecznie",
+    "fair",
+    "deszcz z gradem",
+    "upał",
+    "przelotne burze z piorunami",
+    "lekki deszcz z piorunami",
+    "słabe, przelotne opady deszczu",
+    "obfite opady śniegu",
+    "rozproszone opady śniegu",
+    "częściowe zachmurzenie",
+    "burze z piorunami",
+    "opady śniegu",
+    "pojedyncze burze",
+    "deszcz ze śniegiem",
+    "rozproszone chmury",
+    "ulewa",
+    "ulewa",
+    "burze z piorunami",
+    "lekki deszcz z piorunami",
+    "ulewa",
+    "przeważnie słonecznie",
+    "lekki deszcz",
+    "deszcz",
+    "deszcz",
+    "ciężkie burze z piorunami",
+    "deszcz",
+    "wietrznie"
+];
+
+function translate(text) {
+    var index = weatherStatusesEN.indexOf(text);
+
+    if (index !== -1) {
+        return weatherStatusesPL[index];
+    }
 }
