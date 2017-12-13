@@ -51,6 +51,7 @@ function getWeather(provider, apiUrl) {
                 var city = data.name;
                 var country = data.sys.country;
                 var iconCode = data.weather[0].id;
+                var icon = data.weather[0].icon;
                 var description = data.weather[0].description;
                 var tempC = data.main.temp;
                 var pressure = data.main.pressure;
@@ -69,7 +70,12 @@ function getWeather(provider, apiUrl) {
 
                 $(".card-title").html("Dzisiaj, " + moment().locale('pl').format('LL'));
 
-                $("#iconCode").html("<i class='wi wi-owm-" + iconCode + "'></i>");
+                if (icon.toString().indexOf('n') > -1) {
+                    $("#iconCode").html("<i class='wi wi-owm-night-" + iconCode + "'></i>");
+                } else {
+                    $("#iconCode").html("<i class='wi wi-owm-day-" + iconCode + "'></i>");
+                }
+
                 $("#description").html(description);
                 $("#cityName").html(city + ", " + country);
                 $("#temperature").html(tempC + "°C");

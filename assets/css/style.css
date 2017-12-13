@@ -3,9 +3,9 @@ body, html {
   margin: 0; }
 
 body {
-  background-image: url("../images/blue-endless-ocean-in-fog-picjumbo-com.jpg");
-  background-position: center;
+  background: linear-gradient(#0086bf, white);
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover; }
   body .cityName:hover {
     background-color: #0086bf; }
@@ -15,7 +15,7 @@ body {
     visibility: hidden;
     margin-top: 2em;
     padding-top: 1em;
-    background-color: rgba(255, 255, 255, 0.5); }
+    background-color: rgba(255, 255, 255, 0.75); }
     body .card .card-title {
       font-size: 2.5em; }
     body .card .center {
