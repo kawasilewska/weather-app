@@ -12,10 +12,13 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
         <link rel="stylesheet" href="libs/font-awesome-4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="libs/weather-icons-master/css/weather-icons.min.css">
         <link rel="stylesheet" href="libs/weather-icons-master/css/weather-icons-wind.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
     </head>
 
     <body>
@@ -45,14 +48,19 @@
                             <a class="nav-link cityName" href="#" id="poznań">Poznań</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link cityName" href="#" id="wroclaw">Wrocław</a>
+                            <a class="nav-link cityName" href="#" id="opole">Opole</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cityName" href="#" id="lublin">Lublin</a>
                         </li>
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Podaj miasto" aria-label="Search" id="city">
                         <button class="btn btn-outline-info my-2 my-sm-0 checkTemp" type="submit" id="checkTemp">Szukaj</button>
-                        <button class="btn btn-outline-info my-2 my-sm-0 search checkByGeo" type="submit"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                        <button class="btn btn-outline-info my-2 my-sm-0 search checkByGeo" type="submit">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </button>
                     </form>
                 </div>
             </nav>
@@ -66,7 +74,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-10">
+                                <div class="col-4 center">
                                     <h4 id="cityName"></h4>
                                 </div>
                             </div>

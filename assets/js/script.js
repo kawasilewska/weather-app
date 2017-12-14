@@ -19,18 +19,18 @@ $(document).ready(function() {
     });
 
     $('.checkTemp').on('click', function() {
-       var city = document.getElementById("city").value;
+        var city = document.getElementById("city").value;
 
-       getWeather('openweathermap', getApiUrl('openweathermap', city));
-       getWeather('yahoo', getApiUrl('yahoo', city));
-   });
+        getWeather('openweathermap', getApiUrl('openweathermap', city));
+        getWeather('yahoo', getApiUrl('yahoo', city));
+    });
 
-   $('.cityName').on('click', function(event) {
-       var city = event.target.id;
+    $('.cityName').on('click', function(event) {
+        var city = event.target.id;
 
-       getWeather('openweathermap', getApiUrl('openweathermap', city));
-       getWeather('yahoo', getApiUrl('yahoo', city));
-   });
+        getWeather('openweathermap', getApiUrl('openweathermap', city));
+        getWeather('yahoo', getApiUrl('yahoo', city));
+    });
 });
 
 function getApiUrl(provider, city) {
@@ -45,6 +45,8 @@ function getApiUrl(provider, city) {
 }
 
 function getWeather(provider, apiUrl) {
+    momentPl = moment().locale('pl');
+
     switch (provider) {
         case 'openweathermap':
             $.getJSON(apiUrl, function(data) {
@@ -68,7 +70,7 @@ function getWeather(provider, apiUrl) {
                 document.getElementById('forecastCard').style.visibility = 'visible';
                 document.getElementById('forecastCard2').style.visibility = 'visible';
 
-                $(".card-title").html("Dzisiaj, " + moment().locale('pl').format('LL'));
+                $(".card-title").html("Dzisiaj, " + momentPl.format('LL'));
 
                 if (icon.toString().indexOf('n') > -1) {
                     $("#iconCode").html("<i class='wi wi-owm-night-" + iconCode + "'></i>");
@@ -105,7 +107,7 @@ function getWeather(provider, apiUrl) {
 
                         var convertedText = translate(text);
 
-                        $('#day' + day).html(moment().locale('pl').add(day, 'days').format('ddd') + ', ' + moment().locale('pl').add(day, 'days').format('ll'));
+                        $('#day' + day).html(momentPl.add(day, 'days').format('ddd') + ', ' + moment().locale('pl').add(day, 'days').format('ll'));
                         $('#weatherIcon' + day).html('<i class="wi wi-yahoo-' + imageCode + '"></i>');
                         $('.forecastDay' + day).html(convertedText + "<br />Min: " + tempMinC + "°C, Max: " + tempMaxC + "°C");
                     }
